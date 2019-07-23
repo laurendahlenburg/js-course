@@ -305,23 +305,54 @@
 
 
 // ************* Objects and Methods *************** //
+// var john = {
+//     // key = value
+//     firstName: 'John',
+//     lastName: 'Smith',
+//     birthYear: 1992,
+//     family: ['Jane', 'Mark', 'Bob', 'Emily'],
+//     job: 'teacher',
+//     isMarried: false,
+//     calcAge: 
+//         function() {
+//             // 'this' represents john
+//             // this.age creates new object key (age)
+//             this.age = 2019 - this.birthYear;
+//         }
+// };
+// 
+// // var age = john.calcAge();
+// // john.age = john.calcAge();
+// john.calcAge();
+// console.log(john);
+
+
+// Coding Challenge 4
+
 var john = {
-    // key = value
-    firstName: 'John',
-    lastName: 'Smith',
-    birthYear: 1992,
-    family: ['Jane', 'Mark', 'Bob', 'Emily'],
-    job: 'teacher',
-    isMarried: false,
-    calcAge: 
-        function() {
-            // this represents john.birthYear
-            this.age = 2019 - this.birthYear;
-        }
-};
+    fullName: 'John Smith',
+    mass: 92,
+    height: 1.95,
+    calcBMI: function() {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+}
 
-// var age = john.calcAge();
-// john.age = john.calcAge();
-john.calcAge();
-console.log(john);
+var mark = {
+    fullName: 'Mark Miller',
+    mass: 78,
+    height: 1.69,
+    calcBMI: function() {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+}
 
+if (john.calcBMI() > mark.calcBMI() ) {
+    console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
+} else if (mark.bmi > john.bmi) {
+    console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
+} else {
+    console.log('They have the same BMI');
+}
