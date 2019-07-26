@@ -329,30 +329,167 @@
 
 // Coding Challenge 4
 
+// var john = {
+//     fullName: 'John Smith',
+//     mass: 92,
+//     height: 1.95,
+//     calcBMI: function() {
+//         this.bmi = this.mass / (this.height * this.height);
+//         return this.bmi;
+//     }
+// }
+// 
+// var mark = {
+//     fullName: 'Mark Miller',
+//     mass: 78,
+//     height: 1.69,
+//     calcBMI: function() {
+//         this.bmi = this.mass / (this.height * this.height);
+//         return this.bmi;
+//     }
+// }
+// 
+// if (john.calcBMI() > mark.calcBMI() ) {
+//     console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
+// } else if (mark.bmi > john.bmi) {
+//     console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
+// } else {
+//     console.log('They have the same BMI');
+// }
+
+// ******************* Loops and iteration ************ //
+
+// For loop
+// i = 0, 0 < 10, log i to console, i++
+// for (var i = 0; i < 10; i++) {
+//     console.log(i);
+// }
+// 
+// var john = [
+//     'John', 'Smith', 1990, 'designer', false
+// ];
+// 
+// for (var i = 0; i < john.length; i++) {
+//     console.log(john[i]);
+// }
+// 
+// // While loop -- example does same as above in for loop
+// var i = 0;
+// while(i < john.length) {
+//     console.log(john[i]);
+//     i++;
+// }
+
+// continue and break statements 
+// var john = [
+//     'John', 'Smith', 1990, 'designer', false
+// ];
+// // 
+// // // skips over value (continues the loop)
+// // for (var i = 0; i < john.length; i++) {
+// //     if (typeof john[i] !== 'string') continue;
+// //     console.log(john[i]);
+// // }
+// // // ends (breaks) the loop
+// // for (var i = 0; i < john.length; i++) {
+// //     if (typeof john[i] !== 'string') break;
+// //     console.log(john[i]);
+// // }
+// 
+// // Looping backwards
+// for (var i = john.length - 1; i >= 0; i-- ) {
+//     console.log(john[i]);
+// }
+
+/////////// ********** CODING CHALLENGE 5 *************** ////
+
+// Solution for John
 var john = {
     fullName: 'John Smith',
-    mass: 92,
-    height: 1.95,
-    calcBMI: function() {
-        this.bmi = this.mass / (this.height * this.height);
-        return this.bmi;
+    bills: [124, 48, 268, 180, 42],
+    calcTip: function() {
+        this.tips = [];
+        this.finalValues = [];
+        
+        for (var i = 0; i < this.bills.length; i++) {
+            // determine percentage based on tipping rules
+            var percentage;
+            var bill = this.bills[i];
+            
+            if (bill < 50) {
+                percentage = 0.2;
+            } else if (bill >= 50 && bill < 200) {
+                percentage = .15;
+            } else {
+                percentage = .1;
+            }
+            
+            
+            // add results to corresponding arrays
+            this.tips[i] = bill * percentage
+            this.finalValues[i] = bill + bill + percentage;
+        }
     }
 }
 
+john.calcTip();
+console.log(john);
+
+// Solution for Mark
+// Solution for John
 var mark = {
     fullName: 'Mark Miller',
-    mass: 78,
-    height: 1.69,
-    calcBMI: function() {
-        this.bmi = this.mass / (this.height * this.height);
-        return this.bmi;
+    bills: [77, 475, 110, 45],
+    calcTip: function() {
+        this.tips = [];
+        this.finalValues = [];
+        
+        for (var i = 0; i < this.bills.length; i++) {
+            // determine percentage based on tipping rules
+            var percentage;
+            var bill = this.bills[i];
+            
+            if (bill < 100) {
+                percentage = 0.2;
+            } else if (bill >= 100 && bill < 300) {
+                percentage = .1;
+            } else {
+                percentage = .25;
+            }
+            
+            
+            // add results to corresponding arrays
+            this.tips[i] = bill * percentage
+            this.finalValues[i] = bill + bill + percentage;
+        }
     }
 }
-
-if (john.calcBMI() > mark.calcBMI() ) {
-    console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
-} else if (mark.bmi > john.bmi) {
-    console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
-} else {
-    console.log('They have the same BMI');
+function calcAverage(tips) {
+    var sum = 0;
+    for (var i = 0; i < tips.length; i++) {
+        sum = sum + tips[i];
+        // 0 = 0 + 2 = 2;
+        // 2 = 2 + 6 = 8;
+        // 8 = 8 + 4 = 12;
+        // sum = 12;
+    }
+    return sum / tips.length;
 }
+// [2, 6, 4] -> 0 / 2 / 8 / 12
+
+// Do calculations
+john.calcTip();
+mark.calcTip();
+console.log(john, mark);
+
+john.average = calcAverage(john.tips);
+mark.average = calcAverage(mark.tips);
+console.log(john, mark);
+
+if (john.average > mark.average) {
+    console.log(john.fullName + ' \'s family pays higher tips, with an average of $ ' + john.average);
+} else if (mark.average > john.average) {
+    console.log(mark.fullName + ' \'s family pays higher tips, with an average of $ ' + mark.average);
+} else {
+    console.log('Their average is the same');
+};
